@@ -1,0 +1,66 @@
+
+
+outputDir: test_data/test_out # -> Change this to the directory, where you want to store the results
+preprocess: true
+
+
+# Resources
+
+refGenome: resources/resources_broad_hg38_v0_Homo_sapiens_assembly38.fasta
+
+#SureSelect Human All Exon V7
+bait: resources/S31285117_MergedProbes.bed
+capture: resources/S31285117_Regions.bed
+
+
+# Sample Information
+
+samples:
+    ZH0941:
+        patientID: 15.494
+        fwd: /home/ubuntu/test_data_for_ivna/ancient/CU/ZH0941/20200430.A-Lane_39_ZH0941_S14_R1.fastq.gz
+        rvr: /home/ubuntu/test_data_for_ivna/ancient/CU/ZH0941/20200430.A-Lane_39_ZH0941_S14_R2.fastq.gz
+        tissue: normal
+    ZH0942:
+        patientID: 15.494
+        fwd:
+        rvr:
+        tissue: tumor
+
+    ZH0945:
+
+# Trimming
+
+skewer:
+  Q: 30
+  l: 50
+  q: 35
+  x: AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+  y: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+# Mark Duplicates
+MarkDuplicates:
+    ram: 4
+
+# Recalibration
+
+recal_bam: true
+# What VCF should this be?
+#recalVCF: resources/small_exac_common_3.hg38.vcf.gz
+# Mutect2
+
+# Resource Files
+
+
+gnomad: resources/af-only-gnomad.hg38.vcf.gz
+known_indels: resources/resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf
+pon: resources/somatic-hg38_1000g_pon.hg38.vcf.gz
+known_variants: resources/small_exac_common_3.hg38.vcf.gz
+
+
+# Parameters
+parameters:
+  -af-of-alleles-not-in-resource: 0.0000025
+  -disable-read-filter: MateOnSameContigOrNoMappedMateReadFilter
+
+scatter: 10

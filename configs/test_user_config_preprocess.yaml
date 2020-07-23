@@ -1,0 +1,17 @@
+
+projectName: UiTest2
+outputDir: test_data/ui_test2
+preprocess: true
+
+
+samples:
+  ZH0941:
+    patientID: 15.494
+    fwd: test_data/ancient/CU/ZH0941/20200430.A-Lane_39_ZH0941_S14_R1.fastq.gz
+    rvr: test_data/ancient/CU/ZH0941/20200430.A-Lane_39_ZH0941_S14_R2.fastq.gz
+    tissue: normal
+  ZH0942:
+    patientID: 15.494
+    fwd: test_data/ancient/CU/ZH0942/20200430.A-Lane_39_ZH0942_S15_R1.fastq.gz
+    rvr: test_data/ancient/CU/ZH0942/20200430.A-Lane_39_ZH0942_S15_R2.fastq.gz
+    tissue: tumor

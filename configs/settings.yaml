@@ -1,0 +1,51 @@
+
+# Resources
+
+refGenome: resources/resources_broad_hg38_v0_Homo_sapiens_assembly38.fasta
+#SureSelect Human All Exon V7
+bait: resources/S31285117_MergedProbes.bed
+capture: resources/S31285117_Regions.bed
+
+
+# Trimming
+skewer:
+  Q: 30
+  l: 50
+  q: 35
+  x: AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+  y: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+
+
+# Mark Duplicates
+MarkDuplicates:
+    ram: 4
+
+# Apply base quality recalbiration?
+recal_bam: true
+
+#Mutect2
+# Resource Files
+
+gnomad: resources/af-only-gnomad.hg38.vcf.gz
+known_indels: resources/resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf
+pon: resources/somatic-hg38_1000g_pon.hg38.vcf.gz
+known_variants: resources/small_exac_common_3.hg38.vcf.gz
+
+
+# Parameters
+parameters:
+  -af-of-alleles-not-in-resource: 0.0000025
+  -disable-read-filter: MateOnSameContigOrNoMappedMateReadFilter
+scatter: 10
+
+# Annotation
+funcotatorSources: funcotator_dataSources.v1.6.20190124s
+genomeVersion: hg38
+
+
+#LeoMed
+leomed:
+  nodes: '16'
+  mem: '20000'
+  walltime: '4:00'
+  data: /cluster/dataset/medinfmk

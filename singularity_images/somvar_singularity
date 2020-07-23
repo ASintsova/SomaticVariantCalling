@@ -1,0 +1,42 @@
+BootStrap: docker
+From: continuumio/miniconda3
+
+%files
+
+     #singularity_images/gatk_requirements.txt /opt/requirements.txt
+
+%environment
+
+     SINGULARITYENV_APPEND_PATH=/opt/conda/bin:/opt/conda/condabin:
+     export SINGULARITYENV_APPEND_PATH
+
+%post
+
+    /opt/conda/bin/conda config --add channels defaults
+    /opt/conda/bin/conda config --add channels conda-forge
+    /opt/conda/bin/conda config --add channels bioconda
+    /opt/conda/bin/conda update --all
+    /opt/conda/bin/conda install -c bioconda samtools=1.9
+    /opt/conda/bin/conda install -c bioconda snakemake>=5.1
+    /opt/conda/bin/conda install -c bioconda skewer
+    /opt/conda/bin/conda install -c bioconda bwa
+    /opt/conda/bin/conda install -c bioconda fastqc
+    /opt/conda/bin/conda install -c bioconda multiqc>=1.7
+    /opt/conda/bin/conda install -c bioconda gatk4=4.1.8
+
+
+    #/opt/conda/bin/conda install --file /opt/requirements.txt
+
+     mkdir -p /opt/data
+     apt-get autoremove -y
+     apt-get clean
+     echo 'export export PATH=$SINGULARITYENV_APPEND_PATH:$PATH' >>$SINGULARITY_ENVIRONMENT
+
+
+
+
+
+
+
+
+

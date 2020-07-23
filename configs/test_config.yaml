@@ -1,0 +1,106 @@
+# Please Modify Where Appropriate
+
+
+# Project Name
+project: test
+
+
+# Input Files
+
+path_to_input_files: test_data
+genome: test_data/chr17.fasta
+
+#SureSelect Human All Exon V7
+#capture: resources/S31285117_Regions.bed
+#bait: resources/S31285117_MergedProbes.bed
+capture: test_data/test_Regions.bed
+
+
+# Output
+
+outDir: test_data
+
+
+
+# Mutect2
+
+# Resource Files
+#This is clearly not gnomad, need to download the actual file
+
+gnomad: resources/resources_broad_hg38_v0_Homo_sapiens_assembly38.dbsnp138.vcf
+known_indels: resources/resources_broad_hg38_v0_Homo_sapiens_assembly38.known_indels.vcf
+pon:
+#pon: resources/somatic-hg38_1000g_pon.hg38.vcf
+known_variants: resources/somatic-hg38_small_exac_common_3.hg38.vcf.gz
+
+
+# Parameters
+parameters:
+  -af-of-alleles-not-in-resource: 0.0000025
+  -disable-read-filter: MateOnSameContigOrNoMappedMateReadFilter
+
+scatter: 10
+
+
+
+
+HsMetrics:
+  FOLD_ENRICHMENT: 5
+  MEAN_BAIT_COVERAGE: 10
+  MEAN_TARGET_COVERAGE: 10
+  PCT_TARGET_BASES_10X: 95
+  PCT_USABLE_BASES_ON_BAIT: 80
+  PCT_USABLE_BASES_ON_TARGET: 80
+MarkDuplicates:
+  ram: 4
+PON: false
+#bait: test_data/refs/Probes.for.mutect.mm10_test.bed
+#capture: test_data/refs/Targets.for.mutect.mm10_test.bed
+#dbSNP: ''
+#genome: test_data/refs/test_genome.fa
+#gnomad: ''
+intList: ''
+ncbi_build: GRCm38
+outputDir: test_data/test_output
+patients:
+  Patient1:
+    normal: C57BL6
+    tumor: MC38_1
+  Patient2:
+    normal: Balbc
+    tumor: CT26_1
+projectName: Test
+recalVCF: /home/ubuntu/GRCm38/mus_musculus_SNPs_with_chr.vcf
+samples:
+  Balbc:
+    PatientID: Patient2
+    forward: test_data/reads/Balbc_test_R1.fq
+    reverse: test_data/reads/Balbc_test_R2.fq
+    tissue: normal
+  C57BL6:
+    PatientID: Patient1
+    forward: test_data/reads/C57BL6_test_R1.fq
+    reverse: test_data/reads/C57BL6_test_R2.fq
+    tissue: normal
+  CT26_1:
+    PatientID: Patient2
+    forward: test_data/reads/CT26_1_test_R1.fq
+    reverse: test_data/reads/CT26_1_test_R2.fq
+    tissue: tumor
+  MC38_1:
+    PatientID: Patient1
+    forward: test_data/reads/MC38_1_test_R1.fq
+    reverse: test_data/reads/MC38_1_test_R2.fq
+    tissue: tumor
+#scatter: 20
+skewer:
+  Q: 30
+  l: 50
+  q: 35
+  x: AGATCGGAAGAGCACACGTCTGAACTCCAGTCA
+  y: AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
+test_chrom: 17
+threads: 8
+vep_path: /home/ubuntu/miniconda3/envs/vep/share/ensembl-vep-98.2-0/
+withGermRes: false
+recal_bam: true

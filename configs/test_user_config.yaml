@@ -1,0 +1,15 @@
+
+projectName: UiTest
+outputDir: test_data/ui_test
+preprocess: false
+
+
+samples:
+    p1_normal:
+        patientID: p1
+        bam: test_data/gatk_test/p1_normal.final.bam
+        tissue: normal
+    p1_tumor:
+        patientID: p1
+        bam: test_data/gatk_test/p1_tumor.final.bam
+        tissue: tumor
